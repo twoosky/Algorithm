@@ -5,7 +5,7 @@ for i in range(N):
         print("*", end='')
     print()
 
-# <다른 사람 풀이>
+# <다른 풀이 방법>
 # - print()에서 문자열("*")을 개수만큼 곱해 출력
 '''
 N = int(input())
