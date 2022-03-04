@@ -1,0 +1,22 @@
+SELECT I.ALIMAL_ID, I.ANIMAL_TYPE, I.NAME
+FROM ANIMAL_INS AS I INNER JOIN ANIMAL_OUTS AS O
+    ON I.ANIMAL_ID = O.ANIMAL_ID
+WHERE I.SEX_UPON_INTAKE LIKE "Intact%" 
+    and O.SEX_UPON_OUTCOME NOT LIKE "Intact%"
+ORDER BY I.ANIMAL_ID
+
+
+SELECT I.ALIMAL_ID, I.ANIMAL_TYPE, I.NAME
+FROM ANIMAL_INS AS I INNER JOIN ANIMAL_OUTS AS O
+    ON I.ANIMAL_ID = O.ANIMAL_ID
+WHERE I.SEX_UPON_INTAKE != O.SEX_UPON_OUTCOME
+ORDER BY I.ANIMAL_ID
+
+-- <LIKE>
+-- 특정 문자열을 포함하는지 검색
+-- 1) 컬럼명 LIKE "star%"
+--   : star 문자열로 시작하는 경우
+-- 2) 컬럼명 LIKE "%star"
+--   : star 문자열로 끝나는 경우
+-- 3) 컬럼명 LIKE "%star%"
+--   : 해당 컬럼값에 star가 들어있는 경우
