@@ -8,41 +8,17 @@ public class 공주_구하기 {
         int n = in.nextInt();
         int k = in.nextInt();
 
-        int[] arr = new int[n];
-
-        for(int i = 0; i < n; i++) {
-            arr[i] = i;
+        Queue<Integer> q = new LinkedList<>();
+        for(int i = 1; i < n+1; i++) {
+            q.add(i);
         }
 
-        int pos = 0;
-        while(isDone(arr)) {
-            int i = pos;
-            while(i < pos + k) {
-                if(arr[pos] != 1) {
-
-                }
-            }
-            arr[pos] = 1;
-            pos += k;
-            if (pos >= arr.length) {
-                pos -= arr.length;
-            }
+        while(q.size() > 1) {
+           for(int i = 0; i < k - 1; i++) {
+               q.add(q.poll());
+           }
+           q.poll();
         }
-
-        for(int num : arr) {
-            if(num == 0) {
-                System.out.print(num);
-            }
-        }
-    }
-
-    private static boolean isDone(int[] arr) {
-        int count = 0;
-        for(int num : arr) {
-            if(num == 0) {
-                count++;
-            }
-        }
-        return count == 1;
+        System.out.print(q.poll());
     }
 }
