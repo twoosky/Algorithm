@@ -26,9 +26,5 @@ def main():
     M = int(sys.stdin.readline().rstrip())
     B = list(map(int, sys.stdin.readline().rstrip().split()))
     solution(A, B)
-
 if __name__ == '__main__':
     main()
-
-# <이분 탐색 알고리즘>
-# 개념 참고: 이것이 취업을 위한 코딩테스트다 188p
