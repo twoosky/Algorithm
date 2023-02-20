@@ -14,7 +14,6 @@ class Point implements Comparable<Point> {
         if (this.x == o.x) return this.y - o.y;
         else return this.x - o.x;
     }
-
 }
 
 public class 좌표정렬_Comparable {
@@ -38,3 +37,13 @@ public class 좌표정렬_Comparable {
 - Comparable 인터페이스 구현과 Collections.sort 메서드를 사용하여 풀이
 - Collections.sort()의 정렬 기준은 Comparable<T>의 compareTo이다.
 */
+
+/* compareTo()
+- this와 object 연산 시 음수가 반환되어야 한다.
+- 오름차순 정렬하고 싶으면 this - object;
+- 내림차순 정렬하고 싶으면 object - this;
+
+- this가 10, object가 20이라 할 때, 아래와 같이 반환해야 원하는대로 정렬됨
+- 오름차순 정렬(10, 20): this.x - object.x
+- 내림차순 정렬(20, 10): object.x - this.x
+ */

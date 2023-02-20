@@ -13,17 +13,19 @@ import java.util.*;
 
 public class 피자_배달_거리 {
     private static int[][] board;
-    private static boolean[][] visited;
+    private static Point[] pick;
     private static int n;
-    private static int[] dx = {-1, 0, 1, 0};
-    private static int[] dy = {0, 1, 0, -1};
+    private static int m;
+    private static List<Point> house;
+    private static List<Point> pizza;
+    private static int result = Integer.MAX_VALUE;
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         n = in.nextInt();
-        int m = in.nextInt();
+        m = in.nextInt();
         board = new int[n][n];
-        visited = new boolean[n][n];
+        pick = new Point[m];
 
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
@@ -31,44 +33,43 @@ public class 피자_배달_거리 {
             }
         }
 
-        int result = 0;
+        house = new ArrayList<>();
+        pizza = new ArrayList<>();
         for(int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (board[i][j] == 1) {
-                    result += bfs(i, j);
+                    house.add(new Point(i, j));
+                } else if (board[i][j] == 2) {
+                    pizza.add(new Point(i, j));
                 }
             }
         }
+
+        combi(0, 0);
         System.out.println(result);
     }
 
-    private static int bfs(int x, int y) {
-        int result = 0;
-        Queue<Point> q = new LinkedList<>();
-        q.add(new Point(x, y));
-        visited[x][y] = true;
-
-        while(!q.isEmpty()) {
-            Point point = q.poll();
-            if (board[point.x][point.y] == 2) {
-                return result;
-            }
-            for(int i = 0; i < 4; i++) {
-                int _x = x + dx[i];
-                int _y = y + dy[i];
-                if (_x >= 0 && _x < n && _y >= 0 && _y < n && !visited[_x][_y]) {
-                    visited[_x][_y] = true;
+    private static void combi(int depth, int start) {
+        if (depth == m) {
+            // result에 담긴 피자집들과 집 거리 계산
+            int sum = 0;
+            for (Point hPos : house) {
+                // 해당 집의 피자 배달 거리 (가장 가까운 피자집과의 거리)
+                int min = Integer.MAX_VALUE;
+                for (Point pPos : pick) {
+                    int distance = Math.abs(hPos.x - pPos.x) + Math.abs(hPos.y - pPos.y);
+                    min = Math.min(min, distance);
                 }
+                sum += min;
             }
-            result++;
-        }
-        return -1;
-    }
 
-    private static void dfs(int x, int y) {
-        for(int i = 0; i < 4; i++) {
-            int _x = x + dx[i];
-            int _y = y + dy[i];
+            result = Math.min(result, sum);
+            return;
+        }
+
+        for (int i = start; i < pizza.size(); i++) {
+            pick[depth] = pizza.get(i);
+            combi(depth + 1, i + 1);
         }
     }
 }
