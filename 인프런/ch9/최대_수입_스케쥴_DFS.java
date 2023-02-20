@@ -14,8 +14,7 @@ class Seminar implements Comparable<Seminar>{
     // 2. object에서 this 값 빼면 내림차순 (4 3 2 1)
     @Override
     public int compareTo(Seminar o) {
-        if (this.day == o.day) return o.money - this.money;
-        return this.day - o.day;
+        return o.day - this.day;
     }
 }
 
@@ -36,34 +35,35 @@ public class 최대_수입_스케쥴_DFS {
 
         Collections.sort(list);
 
-        dfs(0, 0, 0);
+        dfs(0, 0);
         System.out.print(result);
     }
 
-    private static void dfs(int day, int sum, int seminarDay) {
-        Seminar lastSeminar = list.get(list.size() - 1);
+    /*
+    day: 지난 기간 (= depth) (= 강연한 기간)
+    sum: 강연료 합계
+     */
 
-        if (seminarDay == lastSeminar.day) {
-            result = Math.max(result, sum);
-            return;
-        }
+    private static void dfs(int day, int sum) {
+        boolean flag = true;
 
         for(int i = 0; i < n; i++) {
             Seminar seminar = list.get(i);
             if (seminar.day > day && !visited[i]) {
                 visited[i] = true;
-                dfs(day + 1, sum + seminar.money, seminar.day);
+                flag = false;
+                dfs(day + 1, sum + seminar.money);
                 visited[i] = false;
             }
+        }
+
+        if (flag) {
+            result = Math.max(result, sum);
         }
     }
 }
 
-/* 아래와 같이 정렬 (day 기준 오름차순 정렬)
-30 1
-20 1
-50 2
-40 2
-60 3
-30 3
+/* 위와 같이 하면 Timeout 발생
+DFS로 완전탐색해서 최대값 구하는 방식으로 구현했기 때문.
+정석 풀이는 우선순위큐 사용하는 것임
  */
