@@ -21,10 +21,12 @@ public class 친구인가 {
             union(a, b);
         }
 
-        int friend1 = in.nextInt();
-        int friend2 = in.nextInt();
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int fa = find(a);
+        int fb = find(b);
 
-        if (unf[friend1] == unf[friend2]) {
+        if (fa == fb) {
             System.out.println("YES");
         } else {
             System.out.println("NO");
