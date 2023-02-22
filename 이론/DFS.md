@@ -50,12 +50,9 @@ public class DFS {
 ### 2. DFS로 모든 경우의 수 완전탐색하기
 * 최대값 구하기, 최소값 구하기, 원하는 값 구하기 등에 사용
 * *값이 나열되어 있고, 이 중 어떤 것을 선택해야 최대값이 되는가* 이런 문제에 활용
+* `예시` : 제한 시간 내 풀 수 있는 최대 점수 구하기
 
-
-
-예시 : 제한 시간 내 풀 수 있는 최대 점수 구하기
-
-<img src="../../../../Pictures/최대점수구하기.png">
+<img src="https://user-images.githubusercontent.com/50009240/220447870-9c3c5a9e-479d-41e3-a3a6-9c516a13af67.png" weight="650" height="500">
 
 ```java
 import java.util.*;
