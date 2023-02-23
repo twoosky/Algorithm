@@ -1,4 +1,4 @@
-package 다익스트라;
+package 우선순위큐;
 
 import java.util.*;
 
