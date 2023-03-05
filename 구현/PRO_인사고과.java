@@ -4,36 +4,31 @@ import java.util.*;
 
 class PRO_인사고과 {
     public int solution(int[][] scores) {
-        int answer = -1;
-
         int[] target = scores[0];
 
+        // 1. 근무 태도 점수는 내림차순 정렬, 동료 평가 점수는 오름차순 정렬
         Arrays.sort(scores, (o1, o2) -> {
-            if (o1[0] == o2[0]) return o2[1] - o1[1];
+            if (o1[0] == o2[0]) return o1[1] - o2[1];
             return o2[0] - o1[0];
         });
 
-        List<int[]> result = new ArrayList<>();
-        result.add(scores[0]);
-        int max = scores[0][1];
-        for(int i = 1; i < scores.length; i++) {
-            int[] score1 = scores[i-1];
-            int[] score2 = scores[i];
-            if (score1[0] == score2[0] || max < score2[1]) {
-                max = score2[1];
-                result.add(score2);
-            }
-        }
+        /*
+        - 내 앞에 동료평가점수가 나보다 높은사람이 한명이라도 있으면 탈락
+        - 근무태도 동점자의 경우 동료평가 오름차순 하였으므로 고려하지 않아도 됨
+         */
 
-        Collections.sort(result, (o1, o2) -> {
-            return (o2[0] + o2[1]) - (o1[0] + o1[1]);
-        });
-
-        for(int i = 0; i < result.size(); i++) {
-            int[] score = result.get(i);
-            if (score[0] == target[0] && score[1] == target[1]) {
-                answer = i + 1;
-                break;
+        int answer = 1;
+        int maxScore = -1;
+        for(int i = 0; i < scores.length; i++) {
+            if (scores[i][1] < maxScore) {
+                if (scores[i][0] == target[0] && scores[i][1] == target[1]) {
+                    return -1;
+                }
+            } else {
+                if (scores[i][0] + scores[i][1] > target[0] + target[1]) {
+                    answer++;
+                }
+                maxScore = Math.max(maxScore, scores[i][1]);
             }
         }
 
