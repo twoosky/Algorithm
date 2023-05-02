@@ -70,6 +70,9 @@ public class PFCT_무지의먹방라이브 {
 }
 
 /*
+[다른 사람 풀이 참고]
+https://moonsbeen.tistory.com/371
+
 [내 풀이]
 - k를 기준으로 순회하는 방식으로 풀이
 - 시간초과 발생
