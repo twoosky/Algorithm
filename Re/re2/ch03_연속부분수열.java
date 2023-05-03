@@ -1,6 +1,6 @@
-package Re;
+package Re.re2;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class ch03_연속부분수열 {
     public static void main(String[] args) {
@@ -12,24 +12,22 @@ public class ch03_연속부분수열 {
             arr[i] = in.nextInt();
         }
 
-        int count = 0;
+        int left = 0;
         int sum = 0;
-        int lt = 0;
-        for(int i = 0; i < n; i++) {
+        int answer = 0;
+
+        for(int i = 0; i < arr.length; i++) {
             sum += arr[i];
-            if (sum < m) {
-                continue;
-            }
             while(sum > m) {
-                sum -= arr[lt];
-                lt++;
+                sum -= arr[left];
+                left++;
             }
+
             if (sum == m) {
-                sum -= arr[lt];
-                lt++;
-                count++;
+                answer++;
             }
         }
-        System.out.print(count);
+
+        System.out.println(answer);
     }
 }

@@ -1,4 +1,4 @@
-package Re;
+package Re.re1;
 
 import java.util.Scanner;
 
