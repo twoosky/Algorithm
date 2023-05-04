@@ -1,26 +1,5 @@
-# 다익스트라
-* 다익스트라 알고리즘은 한 정점에서 다른 모든 정점까지의 최단 경로를 구하는 알고리즘.
-* 그리디를 기반으로 작동하며, 음수 간선이 있는 경우 사용 불가능하다.
-* 연결된 노드들을 탐색하며 연결된 노드까지 가는 최소비용을 계속 업데이트하는 구조
+package 이론.code;
 
-**동작 방식**
-
-0. 우선순위 큐가 거리 비용(cost)값이 작은 순서대로 정렬되도록 compareTo 메서드 오버라이딩
-1. 최단 거리 배열(dis)을 시작 정점까지의 거리를 0, 다른 모든 정점까지의 거리를 Integer.MAX_VALUE로 초기화
-2. 처음 시작 노드를 우선순위 큐에 삽입
-3. 우선순위 큐에서 cost 값이 가장 작은 노드를 하나 꺼내고, 해당 노드(now)와 연결된 노드(edge) 탐색
-6. dis[edge.vertex] > now.cost + edge.cost 이면 연결된 노드의 최단 거리 업데이트 후 우선순위 큐에 연결된 노드와 새로운 최단 거리 삽입
-5. 만약 최단거리 배열에 해당 노드값이 이미 최소값으로 저장되어 있으면, 우선순위 큐에서 해당 노드를 꺼내도 배열을 업데이트할 필요 없음
-
-
-## 예시
-* 방향그래프에서 1번 정점에서 모든 정점으로의 최소 거리비용을 출력해보자.
-* 경로가 없으면 Impossible 출력
-
-<img src="https://user-images.githubusercontent.com/50009240/236293542-9a610f90-887b-4721-b3b9-3d4b9eeadaf5.png" width="530" height="210">
-
-
-```java
 import java.util.*;
 
 class Edge implements Comparable<Edge> {
@@ -37,7 +16,7 @@ class Edge implements Comparable<Edge> {
     }
 }
 
-public class Main {
+public class 다익스트라 {
     private static List<List<Edge>> graph;
     private static int[] dp;
 
@@ -90,9 +69,9 @@ public class Main {
         }
     }
 }
-```
-```
-입력 예시
+
+/*
+입력 예제
 6 9
 1 2 12
 1 3 4
@@ -103,11 +82,14 @@ public class Main {
 4 2 2
 4 5 5
 6 4 5
+ */
 
-출력 예시
+/*
+출력 예제
 2 : 11
 3 : 4
 4 : 9
 5 : 14
 6 : impossible
-```
+ */
+
